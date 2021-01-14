@@ -7,8 +7,11 @@ public class PlayerMovement : MonoBehaviour
     float scaleOnX = 0;
     bool alive = true;
     public GameObject GM;
+    public AudioClip jump, hitAudio,gainPoints;
+    private AudioSource audioS; 
     void Start()
     {
+        audioS = gameObject.AddComponent<AudioSource>(); 
         scaleOnX = hit.transform.localScale.x; 
         startingPos = transform.position; 
     }
@@ -37,8 +40,8 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetKey(KeyCode.Space) && grounded)
         {
-            grounded = false; 
-           
+            grounded = false;
+            audioS.PlayOneShot(jump, 0.5f);
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce);
         }
 
@@ -114,16 +117,29 @@ public class PlayerMovement : MonoBehaviour
 
         if(other.gameObject.tag == "Barrle")
         {
+            audioS.PlayOneShot(hitAudio, 0.7f);
             Instantiate(bubbleEffect, transform.position, Quaternion.identity);
             alive = false;
             Destroy(other.gameObject); 
             StartCoroutine(HitAndReset());
         }
+        if(other.gameObject.tag == "Goal") {
+            audioS.PlayOneShot(gainPoints , 0.7f);
+            LevelOver();
+        }
 
     }
     public GameObject idle, hit, bubbleEffect;
     bool idleState = true;
-    Vector2 startingPos; 
+    Vector2 startingPos;
+
+    void LevelOver() {
+        Instantiate(bubbleEffect, transform.position, Quaternion.identity);
+        transform.position = startingPos;
+        GM.GetComponent<GameMaster>().LevelComplete();
+        Instantiate(bubbleEffect, transform.position, Quaternion.identity);
+    }
+
     IEnumerator HitAndReset()
     {
 

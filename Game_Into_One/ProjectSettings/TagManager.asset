@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Ladder
   - Barrle
+  - Goal
   layers:
   - Default
   - TransparentFX

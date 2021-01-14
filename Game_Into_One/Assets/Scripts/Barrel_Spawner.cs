@@ -6,8 +6,11 @@ public class Barrel_Spawner : MonoBehaviour
 {
     Animator anim;
     public ParticleSystem[] part;
+    private AudioSource audioS;
+    public AudioClip shootAudio;
     void Start()
     {
+        audioS = gameObject.AddComponent<AudioSource>();
         anim = GetComponent<Animator>(); 
         StartCoroutine(SpawnBarrls());
     }
@@ -23,6 +26,7 @@ public class Barrel_Spawner : MonoBehaviour
             p.Clear();
             p.Play(); 
         }
+        audioS.PlayOneShot(shootAudio, 0.5f);
         anim.SetTrigger("Fire");
         GameObject x = Instantiate(barrel, transform.position, Quaternion.identity);
         x.GetComponent<Rigidbody2D>().AddForce(Vector3.right * 300);
