@@ -30,7 +30,7 @@ public class GameMaster : MonoBehaviour
     {
         if(GameOverScreen.activeInHierarchy && Input.GetKeyDown(KeyCode.R))
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
     void UpdateScore(int x = 0) {

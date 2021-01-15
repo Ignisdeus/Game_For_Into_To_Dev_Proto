@@ -69,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -440414815
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 7061801754131594114, guid: 77bcb51e80c8078488ad4d5033940a9a,
     type: 3}
@@ -203,6 +203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isLeft: 1
   anim: {fileID: 18193477464398880}
+  boostAudio: {fileID: 0}
   force: 300
 --- !u!61 &7641466693156769822
 BoxCollider2D:
